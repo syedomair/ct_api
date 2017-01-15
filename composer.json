@@ -1,5 +1,5 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "ct_api",
     "license": "MIT",
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
@@ -21,7 +21,10 @@
         "symfony/polyfill-apcu": "^1.0",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "^2.0"
+        "incenteev/composer-parameter-handler": "^2.0",
+        "jms/serializer-bundle": "dev-master",
+        "friendsofsymfony/rest-bundle": "2.1.*",
+        "firebase/php-jwt": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -59,7 +62,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "3.1-dev"
+            "dev-master": null 
         }
     }
 }
