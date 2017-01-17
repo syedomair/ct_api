@@ -1,0 +1,116 @@
+<?php
+namespace CrowdTech\Bundle\AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+use Symfony\Component\Security\Core\User\UserInterface;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity
+ * @ORM\Entity(repositoryClass="CrowdTech\Bundle\AppBundle\Entity\UserRepository")
+ */
+class User implements UserInterface
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \CrowdTech\Bundle\AppBundle\Entity\Client
+     *
+     * @ORM\ManyToOne(targetEntity="CrowdTech\Bundle\AppBundle\Entity\Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     * })
+     */
+    private $client;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=64, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
+     */
+    private $lastName;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     */
+    private $updatedAt;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="email_verified", type="boolean", nullable=true)
+     */
+    private $emailVerified;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=128, nullable=false)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=128, nullable=false)
+     */
+    private $salt;
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    public function getUsername()
+    {
+        return $this->email;
+    }
+    public function getRoles()
+    {
+        return array();
+    }
+    public function eraseCredentials()
+    {
+    }
+    public function getPassword()
+    {
+        return $this->password;
+    }
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+}

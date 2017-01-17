@@ -82,5 +82,5 @@ fos_rest:
         default_format: json
     exception:
         enabled: true
-        exception_controller: 'SyedOmair\Bundle\MyAppBundle\Controller\CustomExceptionController::showAction'
+        exception_controller: 'CrowdTech\Bundle\AppBundle\Controller\CustomExceptionController::showAction'
 

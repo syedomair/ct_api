@@ -1,0 +1,29 @@
+services:
+    custom_auth.security.authentication.provider:
+        class: CrowdTech\Bundle\AppBundle\Security\CustomAuthProvider
+        arguments: ["", "%kernel.cache_dir%/security/nonces", '@service_container']
+
+    custom_auth.security.authentication.listener:
+        class: CrowdTech\Bundle\AppBundle\Security\CustomAuthListener
+        arguments: ["@security.token_storage", "@security.authentication.manager"]
+
+    client_service:
+        class: CrowdTech\Bundle\AppBundle\Services\ClientService
+        arguments:
+            entity_manager: "@doctrine.orm.entity_manager"
+            error_service: "@error_service"
+
+    organization_service:
+        class: CrowdTech\Bundle\AppBundle\Services\OrganizationService
+        arguments:
+            entity_manager: "@doctrine.orm.entity_manager"
+            error_service: "@error_service"
+
+    user_service:
+        class: CrowdTech\Bundle\AppBundle\Services\UserService
+        arguments:
+            entity_manager: "@doctrine.orm.entity_manager"
+            error_service: "@error_service"
+
+    error_service:
+        class: CrowdTech\Bundle\AppBundle\Services\ErrorService

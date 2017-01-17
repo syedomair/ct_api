@@ -1,0 +1,40 @@
+<?php
+namespace CrowdTech\Bundle\AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Organization
+ *
+ * @ORM\Table(name="organization", indexes={@ORM\Index(name="organization_client", columns={"client_id"}) })
+ * @ORM\Entity(repositoryClass="CrowdTech\Bundle\AppBundle\Entity\OrganizationRepository")
+ */
+class Organization
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var \CrowdTech\Bundle\AppBundle\Entity\Client
+     *
+     * @ORM\ManyToOne(targetEntity="CrowdTech\Bundle\AppBundle\Entity\Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     * })
+     */
+    private $client;
+
+}

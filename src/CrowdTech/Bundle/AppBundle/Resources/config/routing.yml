@@ -1,0 +1,13 @@
+
+rest_api:
+    resource: "@AppBundle/Resources/config/secure_routing.yml"
+    prefix: /secure
+
+client:
+    type:     annotation
+    resource: CrowdTech\Bundle\AppBundle\Controller\ClientController
+
+organization:
+    type:     annotation
+    resource: CrowdTech\Bundle\AppBundle\Controller\OrganizationController
+

@@ -1,0 +1,5 @@
+
+user:
+    type:     annotation
+    resource: CrowdTech\Bundle\AppBundle\Controller\UserController
+
