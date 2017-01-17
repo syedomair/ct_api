@@ -67,6 +67,57 @@ INSERT INTO `category` VALUES (1,1,'Men'),(2,1,'Women'),(3,1,'Children');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `client`
+--
+
+DROP TABLE IF EXISTS `client`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `client` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `client`
+--
+
+LOCK TABLES `client` WRITE;
+/*!40000 ALTER TABLE `client` DISABLE KEYS */;
+INSERT INTO `client` VALUES (1,'client 1'),(2,'client 2');
+/*!40000 ALTER TABLE `client` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `organization`
+--
+
+DROP TABLE IF EXISTS `organization`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `organization` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `client_id` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `organization_client` (`client_id`),
+  CONSTRAINT `FK_C1EE637C19EB6921` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `organization`
+--
+
+LOCK TABLES `organization` WRITE;
+/*!40000 ALTER TABLE `organization` DISABLE KEYS */;
+INSERT INTO `organization` VALUES (1,1,'organization 1');
+/*!40000 ALTER TABLE `organization` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `product`
 --
 
@@ -114,7 +165,10 @@ CREATE TABLE `user` (
   `salt` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `client_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_8D93D64919EB6921` (`client_id`),
+  CONSTRAINT `FK_8D93D64919EB6921` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -124,7 +178,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (46,'omair@gmail.com','2016-03-26 16:39:01','2016-03-26 16:39:01',NULL,'atd1W/VW94/nY','atrasmpqeyo0ckg8okowocgo','Syed','omair'),(47,'syedkhalidomair@gmail.com','2016-12-26 10:24:52','2016-12-26 10:24:52',NULL,'538vBukAP8wlo','53q1x4ft8icc0sk0kosc4go4','Syed','Omair'),(48,'omair1@gmail.com','2016-12-26 14:15:23','2016-12-26 14:15:23',NULL,'fi/.s2eZOpXNU','fioys9rgls84ww0co4844008','Syed','Omair'),(49,'omair2@gmail.com','2017-01-11 17:30:58','2017-01-11 17:30:58',NULL,'1ab1rU5bPGYRM','1axbflhklaqs8ksogsk4c0cws','Syed','Omair'),(50,'omair4@gmail.com','2017-01-11 17:57:47','2017-01-11 17:57:47',NULL,'fxwvHzsg9KpOY','fxezmjrqmuosogkwk8k0oss4','Syed','Omair');
+INSERT INTO `user` VALUES (46,'omair@gmail.com','2016-03-26 16:39:01','2016-03-26 16:39:01',NULL,'atd1W/VW94/nY','atrasmpqeyo0ckg8okowocgo','Syed','omair',NULL),(47,'syedkhalidomair@gmail.com','2016-12-26 10:24:52','2016-12-26 10:24:52',NULL,'538vBukAP8wlo','53q1x4ft8icc0sk0kosc4go4','Syed','Omair',NULL),(48,'omair1@gmail.com','2016-12-26 14:15:23','2016-12-26 14:15:23',NULL,'fi/.s2eZOpXNU','fioys9rgls84ww0co4844008','Syed','Omair',NULL),(49,'omair2@gmail.com','2017-01-11 17:30:58','2017-01-11 17:30:58',NULL,'1ab1rU5bPGYRM','1axbflhklaqs8ksogsk4c0cws','Syed','Omair',NULL),(50,'omair4@gmail.com','2017-01-11 17:57:47','2017-01-11 17:57:47',NULL,'fxwvHzsg9KpOY','fxezmjrqmuosogkwk8k0oss4','Syed','Omair',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -137,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-15 17:39:34
+-- Dump completed on 2017-01-17  8:07:11
